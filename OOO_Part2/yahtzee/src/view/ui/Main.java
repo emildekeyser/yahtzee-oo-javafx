@@ -1,4 +1,4 @@
-package application;
+package view.ui;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
