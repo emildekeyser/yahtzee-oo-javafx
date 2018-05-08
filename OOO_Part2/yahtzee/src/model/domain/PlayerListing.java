@@ -1,15 +1,16 @@
 package model.domain;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
-public class PlayersListing
+public class PlayerListing implements Iterable<Player>
 {
 	private List<Player> players;
 	
-	public PlayersListing()
+	public PlayerListing()
 	{
-		this.players = new ArrayList<Player>();
+		this.players = new LinkedList<Player>();
 	}
 	
 	public void register(String playerName) throws DomainException
@@ -31,6 +32,12 @@ public class PlayersListing
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Iterator<Player> iterator()
+	{
+		return this.players.clone().iterator();
 	}
 	
 }
