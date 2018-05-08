@@ -37,7 +37,7 @@ public class PlayerListing implements Iterable<Player>
 	@Override
 	public Iterator<Player> iterator()
 	{
-		return this.players.clone().iterator();
+		return this.players.iterator();
 	}
 	
 }
