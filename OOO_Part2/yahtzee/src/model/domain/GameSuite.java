@@ -1,10 +1,10 @@
 package model.domain;
 
-public class Game
+public class GameSuite
 {
 	PlayerListing players;
 	
-	public Game()
+	public GameSuite()
 	{
 		this.players = new PlayerListing();
 	}
