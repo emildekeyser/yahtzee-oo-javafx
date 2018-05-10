@@ -13,7 +13,7 @@ public class PlayerListing implements Iterable<Player>
 		this.players = new LinkedList<Player>();
 	}
 	
-	public void register(String playerName) throws DomainException
+	public void register(String playerName)
 	{
 		if (this.playerExists(playerName))
 		{
@@ -38,6 +38,11 @@ public class PlayerListing implements Iterable<Player>
 	public Iterator<Player> iterator()
 	{
 		return this.players.iterator();
+	}
+
+	public Player activePlayer()
+	{
+		return this.players.get(0);
 	}
 	
 }

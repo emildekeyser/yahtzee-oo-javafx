@@ -4,12 +4,12 @@ public class Player
 {
 	String name;
 	
-	Player(String name) throws DomainException
+	Player(String name)
 	{
 		this.setName(name);
 	}
 
-	private void setName(String name) throws DomainException
+	private void setName(String name)
 	{
 		if(name.isEmpty())
 		{
