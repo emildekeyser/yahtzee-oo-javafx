@@ -15,8 +15,7 @@ public class PlayerController
 	{
 		this.mainController = mainController;
 		this.game = (Yahtzee) game;
-		this.window = new YahtzeeWindow();
-		this.window.setPlayerName(playerName);
+		this.window = new YahtzeeWindow(playerName);
 		this.window.setActivePlayer(this.game.activePlayer().getName());
 		
 //		this.window.setRollButtonHandler(new RollButtonHandler());

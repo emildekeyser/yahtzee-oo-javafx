@@ -3,10 +3,9 @@ package controller;
 public class YahtzeeWindow
 {
 
-	public void setPlayerName(String name)
+	public YahtzeeWindow(String playerName)
 	{
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public void setActivePlayer(String string)
