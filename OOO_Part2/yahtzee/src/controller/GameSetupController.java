@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import model.domain.GameSuite;
-import model.domain.Player;
 import view.ui.GameSetupWindow;
 
 public class GameSetupController
@@ -34,11 +33,7 @@ public class GameSetupController
 		@Override
 		public void handle(ActionEvent arg0)
 		{
-			for (Player player : suite)
-			{
-				new PlayerController(player, suite.game());
-			}
-			
+			new MainController(suite);
 			setupWindow.close();
 		}	
 	}
