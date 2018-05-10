@@ -15,7 +15,7 @@ public class GameSetupController
 	{
 		this.suite = new GameSuite();
 		this.setupWindow = new GameSetupWindow(primaryStage);
-		this.setupWindow.setRegisterButtonHnadler(new RegisterButtonHandler());
+		this.setupWindow.setRegisterButtonHandler(new RegisterButtonHandler());
 		this.setupWindow.setStartGameButtonHandler(new StartGameButtonHandler());
 	}
 	

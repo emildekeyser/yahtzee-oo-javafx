@@ -12,7 +12,7 @@ public class GameSetupWindow
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setRegisterButtonHnadler(EventHandler<ActionEvent> registerButtonHandler)
+	public void setRegisterButtonHandler(EventHandler<ActionEvent> registerButtonHandler)
 	{
 		// TODO Auto-generated method stub
 		
@@ -35,5 +35,4 @@ public class GameSetupWindow
 		// TODO Auto-generated method stub
 		
 	}
-
 }

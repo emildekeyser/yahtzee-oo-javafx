@@ -3,17 +3,18 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.domain.Game;
+import model.domain.Yahtzee;
 
 public class PlayerController
 {
-	private Game game;
+	private Yahtzee game;
 	private YahtzeeWindow window;
 	private MainController mainController;
 
 	public PlayerController(String playerName, Game game, MainController mainController)
 	{
 		this.mainController = mainController;
-		this.game = game;
+		this.game = (Yahtzee) game;
 		this.window = new YahtzeeWindow();
 		this.window.setPlayerName(playerName);
 		this.window.setActivePlayer(this.game.activePlayer().getName());
