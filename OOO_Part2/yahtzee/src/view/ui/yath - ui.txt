@@ -1,0 +1,16 @@
+setActions in de panels moeten nog gemaakt worden maar ik weet niet goed hoe of moet je daar controllers meegeven?
+
+RegisterPlayerPane implement geen view omdat de functies dan overlappen + die moet niet persee een observer zijn
+
+de setDice() heb ik een ArrayList<Integer> van gemaakt omdat het een beetje vervelend was met een gewone Array
+
+update() function zet de tekst van de die buttons volgens de diceValues van setDice
+
+setScores(ArrayList<Integer) moet je een list meegeven van integers, ACE is plaats 1, TWO is plaats 2, etc...
+
+total score gaat via de setTotal
+
+
+Ik had ook wat problemen met het project van github in mijn eclipse te zetten, de packages werden behandeld als gewone folders en ik kon daar niks inzetten
+dus ik heb het gewoon even handmatig alles geupload en gewoon alles even in package UI gezet
+
