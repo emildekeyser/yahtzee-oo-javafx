@@ -20,7 +20,7 @@ public class Yahtzee extends Game
 	
 	public void roll(boolean[] rerolFlags)
 	{
-		if(this.rollCounter > 3)
+		if(!canRoll())
 		{
 			throw new DomainException("Men mag maar driemaal rollen.");
 		}
@@ -33,6 +33,24 @@ public class Yahtzee extends Game
 			this.currentDice.roll(rerolFlags);
 			this.rollCounter++;
 		}
+	}
+	
+	public boolean canRoll()
+	{
+		if(this.rollCounter > 3)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean canChooseCategory()
+	{
+		if (this.rollCounter == 0)
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	

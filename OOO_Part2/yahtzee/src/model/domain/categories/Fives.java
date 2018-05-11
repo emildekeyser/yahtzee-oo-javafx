@@ -1,0 +1,43 @@
+package model.domain.categories;
+
+import model.domain.Dice;
+import model.domain.DomainException;
+
+public class Fives implements Category
+{
+
+	@Override
+	public boolean validDice(Dice dice)
+	{
+		for (int value : dice.getValues())
+		{
+			if (value == 5)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int calculate(Dice dice)
+	{
+		int output = 0;
+		if (validDice(dice))
+		{
+			for (int value : dice.getValues())
+			{
+				if (value == 5)
+				{
+					output += value;
+				}
+			}
+		}
+		else 
+		{
+			throw new DomainException("Dice don't contain a five.");
+		}
+		return output;
+	}
+
+}

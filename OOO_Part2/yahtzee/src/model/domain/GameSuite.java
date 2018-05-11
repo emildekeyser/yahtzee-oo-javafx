@@ -10,7 +10,7 @@ public class GameSuite implements Iterable<Player>
 	public GameSuite()
 	{
 		this.players = new PlayerListing();
-		this.game = new Yahtzee();
+		this.game = new Yahtzee(players);
 	}
 	
 	public void registerPlayer(String name)
