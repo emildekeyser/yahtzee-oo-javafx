@@ -36,7 +36,8 @@ public class YahtzeeGamePanel extends BorderPane {
 
 	public YahtzeeGamePanel() {
 		createBoard();
-		justActivated = false;
+		this.justActivated = false;
+		this.deactivate();
 	}
 
 	public String getPlayerName() {
@@ -202,6 +203,29 @@ public class YahtzeeGamePanel extends BorderPane {
 	public void activate()
 	{
 		 justActivated = true;
+		 this.canChooseCategory(true);
+		 this.canRoll(true);
+	}
+	
+	public void deactivate()
+	{
+		this.canChooseCategory(false);
+		this.canRoll(false);
+	}
+
+	public void canChooseCategory(boolean canChooseCategory)
+	{
+		this.categories.setDisable(canChooseCategory);
+		this.select.setDisable(canChooseCategory);
+	}
+
+	public void canRoll(boolean canRoll)
+	{
+		for (ToggleButton btn : this.toggleDice)
+		{
+			btn.setDisable(canRoll);
+		}
+		this.throwDice.setDisable(canRoll);
 	}
 
 }

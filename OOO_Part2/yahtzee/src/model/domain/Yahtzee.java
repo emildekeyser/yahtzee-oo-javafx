@@ -24,39 +24,28 @@ public class Yahtzee extends Game
 	
 	public void roll(boolean[] rerolFlags)
 	{
-//		if(!canRoll())
-//		{
-//			throw new DomainException("Men mag maar driemaal rollen.");
-//		}
-//		else if(this.rollCounter < 1)
-//		{
-//			this.currentDice.roll();
-//		}
-//		else 
-//		{
-//			this.currentDice.roll(rerolFlags);
-//			this.rollCounter++;
-//		}
-		
-		this.currentDice.roll(rerolFlags);
+		if(this.canRoll())
+		{
+			if(this.rollCounter < 1)
+			{
+				this.currentDice.roll();
+			}
+			else 
+			{
+				this.currentDice.roll(rerolFlags);
+			}
+			this.rollCounter++;
+		}
 	}
 	
 	public boolean canRoll()
 	{
-		if(this.rollCounter >= 3)
-		{
-			return false;
-		}
-		return true;
+		return this.rollCounter < 3;
 	}
 	
 	public boolean canChooseCategory()
 	{
-		if (this.rollCounter == 0)
-		{
-			return false;
-		}
-		return true;
+		return this.rollCounter < 1;
 	}
 
 	public int[] getDiceValues()

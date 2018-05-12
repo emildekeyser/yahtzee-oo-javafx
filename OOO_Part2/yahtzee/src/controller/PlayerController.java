@@ -35,8 +35,8 @@ public class PlayerController
 		public void handle(ActionEvent event)
 		{
 			game.roll(window.getRerollFlags());
-//			window.canChooseEndCategory(game.canChooseEndCategory());
-//			window.canRoll(game.canRoll());
+			window.canChooseCategory(game.canChooseCategory());
+			window.canRoll(game.canRoll());
 			mainController.globalGameStateUpdate();
 		}	
 	}
@@ -47,8 +47,8 @@ public class PlayerController
 		public void handle(ActionEvent event)
 		{
 			game.ready(window.getCategoryValue());
-//			window.deactivate();
-//			mainController.playerReady();
+			window.deactivate();
+			mainController.playerReady();
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class PlayerController
 		window.setDice(l);
 		
 //		window.setScoreCard(game.getScoreCard);
-//		this.window.setActivePlayer(this.game.activePlayer().getName());
+		this.window.setActivePlayerName(this.game.activePlayer().getName());
 	}
 	
 	public void Activate()

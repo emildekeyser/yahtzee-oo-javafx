@@ -95,5 +95,20 @@ public class YahtzeeGameView extends Stage implements View{
 		this.yathzeeGamePanel.activate();
 	}
 
+	public void canChooseCategory(boolean canChooseCategory)
+	{
+		this.yathzeeGamePanel.canChooseCategory(canChooseCategory);
+	}
+
+	public void canRoll(boolean canRoll)
+	{
+		this.yathzeeGamePanel.canRoll(canRoll);
+	}
+
+	public void deactivate()
+	{
+		this.yathzeeGamePanel.deactivate();
+	}
+
 
 }
