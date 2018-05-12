@@ -37,7 +37,7 @@ public class PlayerController
 			game.roll(window.getRerollFlags());
 //			window.canChooseEndCategory(game.canChooseEndCategory());
 //			window.canRoll(game.canRoll());
-//			mainController.globalGameStateUpdate();
+			mainController.globalGameStateUpdate();
 		}	
 	}
 	
@@ -53,8 +53,14 @@ public class PlayerController
 	}
 	
 	public void GameStateUpdate()
-	{
-		window.setDice(ArrayList<Integer>(Arrays.asList(game.getDiceValues())));
+	{	
+		ArrayList<Integer> l = new ArrayList<Integer>(5);
+		for (Integer integer : game.getDiceValues())
+		{
+			l.add(integer);
+		}
+		window.setDice(l);
+		
 //		window.setScoreCard(game.getScoreCard);
 //		this.window.setActivePlayer(this.game.activePlayer().getName());
 	}
