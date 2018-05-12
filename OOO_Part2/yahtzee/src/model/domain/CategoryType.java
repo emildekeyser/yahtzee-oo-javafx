@@ -1,4 +1,4 @@
-package model.domain.categories;
+package model.domain;
 
 public enum CategoryType
 {

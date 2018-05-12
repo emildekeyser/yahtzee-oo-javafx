@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.domain.Game;
 import model.domain.Yahtzee;
+import view.ui.YahtzeeWindow;
 
 public class PlayerController
 {

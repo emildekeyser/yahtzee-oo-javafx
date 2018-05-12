@@ -15,10 +15,11 @@ public class PlayerListing implements Iterable<Player>
 	
 	public void register(String playerName)
 	{
-		if (this.playerExists(playerName))
-		{
-			throw new DomainException(playerName + " already exists!");
-		}
+//		if (this.playerExists(playerName))
+//		{
+//			throw new DomainException(playerName + " already exists!");
+//		}
+		// dit mag want we identificeren spelers niet op naam
 		this.players.add(new Player(playerName));
 	}
 

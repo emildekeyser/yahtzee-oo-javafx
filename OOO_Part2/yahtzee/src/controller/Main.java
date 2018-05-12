@@ -2,6 +2,8 @@ package controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import view.ui.GameSetupPanel;
+import view.ui.GameSetupView;
 
 public class Main extends Application
 {
