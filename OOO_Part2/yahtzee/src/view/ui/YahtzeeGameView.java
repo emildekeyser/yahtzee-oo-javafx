@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.domain.CategoryType;
 
 public class YahtzeeGameView extends Stage implements View{
 
@@ -56,7 +57,7 @@ public class YahtzeeGameView extends Stage implements View{
 		getYathzeeGamePanel().setTotal(total);
 	}
 
-	public String getCategoryValue() {
+	public CategoryType getCategoryValue() {
 		return getYathzeeGamePanel().getCategoryValue();
 	}
 	

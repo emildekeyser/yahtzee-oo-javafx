@@ -31,7 +31,7 @@ public class Dice
 
 	public int[] getValues()
 	{
-		return this.values;
+		return this.values.clone();
 	}
 
 	public void roll()

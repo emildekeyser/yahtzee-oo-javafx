@@ -1,15 +1,13 @@
 package model.domain;
 
-import java.util.Hashtable;
-import java.util.Map;
-
 public class ScoreData {
 	private Player player;
-	private String category;
+	private CategoryType category;
 	private int score;
 
-	public ScoreData(Player player, String category, int score) {
-		setCategory(category);
+	public ScoreData(Player player, CategoryType type, int score)
+	{
+		setCategory(type);
 		setPlayer(player);
 		setScore(score);
 	}
@@ -25,15 +23,12 @@ public class ScoreData {
 		this.player = player;
 	}
 
-	public String getCategory() {
+	public CategoryType getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
-		if (category.isEmpty()) {
-			throw new DomainException("Invalid category");
-		}
-		this.category = category;
+	public void setCategory(CategoryType type) {
+		this.category = type;
 	}
 
 	public int getScore() {

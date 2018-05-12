@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class Yahtzee extends Game
 {
-	Dice currentDice;
-	int rollCounter;
+	private Dice currentDice;
+	private int rollCounter;
+	private ScoreCard scoreCard;
 	
 	public Yahtzee(PlayerListing players)
 	{
 		super(players);
 		this.currentDice = new Dice();
 		this.rollCounter = 0;
+		this.scoreCard = new ScoreCard();
 	}
 
 	@Override
@@ -22,19 +24,21 @@ public class Yahtzee extends Game
 	
 	public void roll(boolean[] rerolFlags)
 	{
-		if(!canRoll())
-		{
-			throw new DomainException("Men mag maar driemaal rollen.");
-		}
-		else if(this.rollCounter < 1)
-		{
-			this.currentDice.roll();
-		}
-		else 
-		{
-			this.currentDice.roll(rerolFlags);
-			this.rollCounter++;
-		}
+//		if(!canRoll())
+//		{
+//			throw new DomainException("Men mag maar driemaal rollen.");
+//		}
+//		else if(this.rollCounter < 1)
+//		{
+//			this.currentDice.roll();
+//		}
+//		else 
+//		{
+//			this.currentDice.roll(rerolFlags);
+//			this.rollCounter++;
+//		}
+		
+		this.currentDice.roll(rerolFlags);
 	}
 	
 	public boolean canRoll()
@@ -61,7 +65,10 @@ public class Yahtzee extends Game
 	{
 		return this.currentDice.getValues();
 	}
-	
-	
+
+	public void ready(CategoryType type)
+	{
+		this.scoreCard.save(this.activePlayer(), type, this.currentDice);
+	}
 
 }

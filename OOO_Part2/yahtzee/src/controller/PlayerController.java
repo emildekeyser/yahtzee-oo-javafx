@@ -46,7 +46,7 @@ public class PlayerController
 		@Override
 		public void handle(ActionEvent event)
 		{
-//			game.ready(window.getChosenCategory());
+			game.ready(window.getCategoryValue());
 //			window.deactivate();
 //			mainController.playerReady();
 		}

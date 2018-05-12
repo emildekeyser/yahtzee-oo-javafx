@@ -27,7 +27,7 @@ public class YahtzeeGamePanel extends BorderPane {
 	private GridPane mainBoard;
 	private GridPane scoreBoard;
 	private GridPane scoreBoardScores;
-	private ComboBox<String> categories;
+	private ComboBox<CategoryType> categories;
 	private Button select;
 	private Label total;
 	private List<ToggleButton> toggleDice;
@@ -75,7 +75,7 @@ public class YahtzeeGamePanel extends BorderPane {
 		throwDice = new Button("Throw Dice");
 		diceUi = new HBox();
 		categoryAndNext = new HBox();
-		categories = new ComboBox<String>();
+		categories = new ComboBox<CategoryType>();
 		select = new Button("Select");
 		scoreBoard = new GridPane();
 		mainBoard = new GridPane();
@@ -132,9 +132,10 @@ public class YahtzeeGamePanel extends BorderPane {
 	}
 
 	private void createCategoriesCombo() {
-		for (CategoryType t : CategoryType.values()) {
-			categories.getItems().add(t.toString());
-		}
+//		for (CategoryType t : CategoryType.values()) {
+//			categories.getItems().add(t.toString());
+//		}
+		categories.getItems().addAll(CategoryType.values());
 	}
 
 	public void setPlayerName(String playerName) {
@@ -165,7 +166,7 @@ public class YahtzeeGamePanel extends BorderPane {
 		this.total.setText("TOTAL: " + total);
 	}
 
-	public String getCategoryValue() {
+	public CategoryType getCategoryValue() {
 		return categories.getValue();
 	}
 
@@ -190,10 +191,10 @@ public class YahtzeeGamePanel extends BorderPane {
 		else
 		{
 			flags = new boolean[] {false, false, false, false, false};
-//			for (int i = 0; i < 5; i++)
-//			{
-//				flags[i] = toggleDice.get(i).isSelected();
-//			}
+			for (int i = 0; i < 5; i++)
+			{
+				flags[i] = toggleDice.get(i).isSelected();
+			}
 			return flags;
 		}
 	}

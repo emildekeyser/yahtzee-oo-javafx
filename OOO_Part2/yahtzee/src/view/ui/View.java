@@ -14,7 +14,5 @@ public interface View {
 
 	public void setTotal(int total);
 
-	public String getCategoryValue();
-
 	public void setDice(ArrayList<Integer> diceValues);
 }
