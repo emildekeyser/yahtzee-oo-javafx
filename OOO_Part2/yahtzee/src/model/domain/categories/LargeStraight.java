@@ -7,56 +7,17 @@ public class LargeStraight implements Category
 {
 
 	@Override
-	public boolean validDice(Dice dice) //Dit kan waarschijnlijk beter geschreven worden.
+	public boolean validDice(Dice dice)
 	{
-		int[] values = dice.getValues();
-		int een = 0;
-		int twee = 0;
-		int drie = 0;
-		int vier = 0;
-		int vijf = 0;
-		int zes = 0;
-		for (int i = 0; i < 5; i++)
-		{
-			switch (values[i])
-			{
-				case 1:
-					een++;
-					break;
-	
-				case 2:
-					twee++;
-					break;
-	
-				case 3:
-					drie++;
-					break;
-	
-				case 4:
-					vier++;
-					break;
-	
-				case 5:
-					vijf++;
-					break;
-	
-				case 6:
-					zes++;
-					break;
-
-				default:
-					break;
-			}
-		}
-		if (een >= 1 && twee >= 1 && drie >= 1 && vier >= 1 && vijf >= 1)
-		{
-			return true;
-		}
-		if (twee >= 1 && drie >= 1 && vier >= 1 && vijf >= 1 && zes >= 1)
-		{
-			return true;
-		}
-		return false;
+		int[] v = dice.getValues().clone();
+		java.util.Arrays.sort(v);
+		
+		boolean ret = v[4] == v[3] + 1 		// v[4] tot v [0] is een large straight
+				   && v[3] == v[2] + 1
+				   && v[2] == v[1] + 1
+				   && v[1] == v[0] + 1;
+				
+		return ret;
 	}
 
 	@Override
