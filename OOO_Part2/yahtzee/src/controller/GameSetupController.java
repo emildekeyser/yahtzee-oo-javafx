@@ -26,14 +26,7 @@ public class GameSetupController
 		@Override
 		public void handle(ActionEvent arg0)
 		{
-			try
-			{
-				suite.registerPlayer(setupWindow.getPlayerName());
-			}
-			catch (Exception e)
-			{
-				JOptionPane.showMessageDialog(null, e.getMessage(), null, 0);
-			}
+			suite.registerPlayer(setupWindow.getPlayerName());
 			setupWindow.addPlayerName(setupWindow.getPlayerName());
 		}	
 	}
@@ -43,8 +36,16 @@ public class GameSetupController
 		@Override
 		public void handle(ActionEvent arg0)
 		{
-			new MainController(suite);
-			setupWindow.stop();
+			try
+			{
+				suite.chooseGame();
+				new MainController(suite);
+				setupWindow.stop();
+			}
+			catch (Exception e)
+			{
+				JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 0);
+			}
 		}	
 	}
 }

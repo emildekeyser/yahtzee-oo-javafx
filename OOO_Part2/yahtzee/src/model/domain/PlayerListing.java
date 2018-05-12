@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PlayerListing implements Iterable<Player>
 {
-	private List<Player> players;
+	private LinkedList<Player> players;
 	
 	public PlayerListing()
 	{
@@ -44,6 +44,17 @@ public class PlayerListing implements Iterable<Player>
 	public Player activePlayer()
 	{
 		return this.players.get(0);
+	}
+
+	public void rotate()
+	{
+		Player first = this.players.pop();
+		this.players.addLast(first);
+	}
+
+	public boolean isEmpty()
+	{
+		return this.players.isEmpty();
 	}
 	
 }

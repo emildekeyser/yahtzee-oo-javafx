@@ -45,8 +45,6 @@ public class Yahtzee extends Game
 	{
 		if(this.rollCounter >= 3)
 		{
-			this.rollCounter = 0;
-//			this.players.rotate();
 			return false;
 		}
 		return true;
@@ -69,6 +67,8 @@ public class Yahtzee extends Game
 	public void ready(CategoryType type)
 	{
 		this.scoreCard.save(this.activePlayer(), type, this.currentDice);
+		this.players.rotate();
+		this.rollCounter = 0;
 	}
 
 }

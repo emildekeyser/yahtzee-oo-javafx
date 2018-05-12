@@ -6,6 +6,10 @@ public abstract class Game
 	
 	public Game(PlayerListing players)
 	{
+		if (players.isEmpty())
+		{
+			throw new DomainException("Need At least 1 player");
+		}
 		this.players = players;
 	}
 	public Player activePlayer()
