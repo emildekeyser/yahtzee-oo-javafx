@@ -1,18 +1,18 @@
 package view.ui;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class YathzeeGameView extends Stage implements View {
+public class YahtzeeGameView extends Stage implements View{
 
-	private YathzeeGamePanel yathzeeGamePanel;
+	private YahtzeeGamePanel yathzeeGamePanel;
 	private Stage stage;
 
-	public YathzeeGameView(Stage stage, YathzeeGamePanel pane) {
+	private YahtzeeGameView(Stage stage, YahtzeeGamePanel pane) {
 		setStage(stage);
 		setYathzeeGamePanel(pane);
 
@@ -22,11 +22,17 @@ public class YathzeeGameView extends Stage implements View {
 		sizeToScene();
 	}
 
-	public YathzeeGamePanel getYathzeeGamePanel() {
+	public YahtzeeGameView(String playerName)
+	{
+		this(new Stage(), new YahtzeeGamePanel());
+		this.setPlayerName(playerName);
+	}
+
+	public YahtzeeGamePanel getYathzeeGamePanel() {
 		return yathzeeGamePanel;
 	}
 
-	public void setYathzeeGamePanel(YathzeeGamePanel yathzeeGamePanel) {
+	public void setYathzeeGamePanel(YahtzeeGamePanel yathzeeGamePanel) {
 		this.yathzeeGamePanel = yathzeeGamePanel;
 	}
 
@@ -40,10 +46,6 @@ public class YathzeeGameView extends Stage implements View {
 	
 	public void setPlayerName(String playerName) {
 		getYathzeeGamePanel().setPlayerName(playerName);
-	}
-
-	public void setCurrentPlayerText(String playerName) {
-		getYathzeeGamePanel().setCurrentPlayerText(playerName);
 	}
 
 	public void setScores(ArrayList<Integer> scores) {
@@ -70,6 +72,21 @@ public class YathzeeGameView extends Stage implements View {
 		getStage().show();
 	}
 
+	@Override
+	public void setActivePlayerName(String playerName)
+	{
+		getYathzeeGamePanel().setActivePlayerName(playerName);
+	}
+
+	public void setRollButtonHandler(EventHandler<ActionEvent> RollButtonHandler)
+	{
+		this.getYathzeeGamePanel().setRollButtonHandler(RollButtonHandler);
+	}
+	
+	public void setCategoryChoiceHandler(EventHandler<ActionEvent> CategoryChoiceHandler)
+	{
+		this.getYathzeeGamePanel().setCategoryChoiceHandler(CategoryChoiceHandler);
+	}
 
 
 }

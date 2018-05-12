@@ -59,4 +59,9 @@ public class GameSetupView extends Stage {
 		this.getRegisterPlayerPanel().addPlayerName(playerName);
 	}
 
+	public void stop()
+	{
+		this.stage.close();
+	}
+
 }

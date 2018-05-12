@@ -8,7 +8,7 @@ public interface View {
 
 	public void setPlayerName(String playerName);
 
-	public void setCurrentPlayerText(String playerName);
+	public void setActivePlayerName(String playerName);
 
 	public void setScores(ArrayList<Integer> scores);
 

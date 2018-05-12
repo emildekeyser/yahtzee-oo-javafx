@@ -26,7 +26,7 @@ public class GameSuite implements Iterable<Player>
 
 	public Game game()
 	{
-		return this.game();
+		return this.game;
 	}
 	
 	

@@ -8,5 +8,8 @@ public abstract class Game
 	{
 		this.players = players;
 	}
-	public abstract Player activePlayer();
+	public Player activePlayer()
+	{
+		return players.activePlayer();
+	}
 }

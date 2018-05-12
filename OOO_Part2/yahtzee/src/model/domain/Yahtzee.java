@@ -15,7 +15,7 @@ public class Yahtzee extends Game
 	@Override
 	public Player activePlayer()
 	{
-		return super.players.activePlayer();
+		return super.activePlayer();
 	}
 	
 	public void roll(boolean[] rerolFlags)

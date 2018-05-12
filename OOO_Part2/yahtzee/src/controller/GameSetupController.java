@@ -1,7 +1,6 @@
 package controller;
 
 import javax.swing.JOptionPane;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -45,7 +44,7 @@ public class GameSetupController
 		public void handle(ActionEvent arg0)
 		{
 			new MainController(suite);
-			setupWindow.close();
+			setupWindow.stop();
 		}	
 	}
 }

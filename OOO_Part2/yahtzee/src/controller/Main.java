@@ -9,7 +9,15 @@ public class Main extends Application
 {
 	public static void main(String[] args)
 	{
-		Application.launch(args);
+		try
+		{
+			Application.launch(args);
+		}
+		catch (Exception e)
+		{
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override

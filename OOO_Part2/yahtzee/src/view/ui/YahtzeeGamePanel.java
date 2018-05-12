@@ -3,6 +3,8 @@ package view.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -13,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.domain.CategoryType;
 
-public class YathzeeGamePanel extends BorderPane {
+public class YahtzeeGamePanel extends BorderPane {
 
 	private Label playerText;
 	private Label currentPlayerText;
@@ -35,7 +37,7 @@ public class YathzeeGamePanel extends BorderPane {
 	private ToggleButton die5;
 	private List<Integer> diceValues;
 
-	public YathzeeGamePanel() {
+	public YahtzeeGamePanel() {
 		createBoard();
 	}
 
@@ -65,7 +67,6 @@ public class YathzeeGamePanel extends BorderPane {
 		initVariables();
 		createDice();
 		createMainField();
-		setActions();
 		addUi();
 	}
 
@@ -113,9 +114,12 @@ public class YathzeeGamePanel extends BorderPane {
 
 	private void createMainField() {
 		addMainBoard();
-		mainBoard.setConstraints(diceUi, 0, 1);
-		mainBoard.setConstraints(categoryAndNext, 0, 2);
-
+		//mainBoard.setConstraints(diceUi, 0, 1);
+		//mainBoard.setConstraints(categoryAndNext, 0, 2);
+		
+		GridPane.setConstraints(diceUi, 0, 1);
+		GridPane.setConstraints(categoryAndNext, 0, 2);
+		
 		mainBoard.setPadding(new Insets(100, 0, 0, 10));
 		mainBoard.getChildren().addAll(diceUi, categoryAndNext);
 	}
@@ -138,7 +142,7 @@ public class YathzeeGamePanel extends BorderPane {
 		playerText.setText("Player: " + playerName);
 	}
 
-	public void setCurrentPlayerText(String playerName) {
+	public void setActivePlayerName(String playerName) {
 		this.currentPlayerText.setText("Current player: " + playerName);
 	}
 
@@ -170,9 +174,20 @@ public class YathzeeGamePanel extends BorderPane {
 		die5.setText(diceValues.get(4).toString());
 	}
 
-	public void setActions() {
-		// throwDice.setOnAction(value);
-		// select.setOnAction(value);
+	public void setRollButtonHandler(EventHandler<ActionEvent> rollButtonHandler)
+	{
+		this.throwDice.setOnAction(rollButtonHandler);
+	}
+
+	public void setCategoryChoiceHandler(EventHandler<ActionEvent> categoryChoiceHandler)
+	{
+		this.select.setOnAction(categoryChoiceHandler);
+	}
+	
+	public boolean[] getRerollFlags()
+	{
+//		this.die1.get
+		return null;
 	}
 
 }
