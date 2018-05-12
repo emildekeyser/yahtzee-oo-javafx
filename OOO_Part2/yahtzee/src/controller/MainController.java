@@ -20,6 +20,7 @@ public class MainController
 		{
 			playerMap.put(player, new PlayerController(player.getName(), this.game, this));
 		}
+		playerMap.get(this.game.activePlayer()).Activate();
 	}
 
 	public void globalGameStateUpdate()

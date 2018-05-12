@@ -13,12 +13,12 @@ public class Dice
 	
 	public void roll(boolean[] flags)
 	{
-		if(flags.length != values.length || flags == null)
-		{
-			this.roll();
-		}
-		else
-		{
+//		if(flags.length != values.length || flags == null)
+//		{
+//			this.roll();
+//		}
+//		else
+//		{
 			for (int i = 0; i < values.length; i++)
 			{
 				if (flags[i])
@@ -26,7 +26,7 @@ public class Dice
 					this.values[i] = ThreadLocalRandom.current().nextInt(1, 7); // 1 t.e.m. 6
 				}
 			}
-		}
+//		}
 	}
 
 	public int[] getValues()

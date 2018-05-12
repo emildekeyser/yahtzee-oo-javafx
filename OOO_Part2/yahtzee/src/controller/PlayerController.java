@@ -67,7 +67,7 @@ public class PlayerController
 	
 	public void Activate()
 	{
-		//this.window.canRoll(true);
+		this.window.activate();
 	}
 	
 }

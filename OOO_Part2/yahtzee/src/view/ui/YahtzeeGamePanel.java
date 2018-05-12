@@ -32,9 +32,11 @@ public class YahtzeeGamePanel extends BorderPane {
 	private Label total;
 	private List<ToggleButton> toggleDice;
 	private List<Integer> diceValues;
+	private boolean justActivated;
 
 	public YahtzeeGamePanel() {
 		createBoard();
+		justActivated = false;
 	}
 
 	public String getPlayerName() {
@@ -180,15 +182,25 @@ public class YahtzeeGamePanel extends BorderPane {
 	public boolean[] getRerollFlags()
 	{
 		boolean[] flags = new boolean[] {true, true, true, true, true};
-//		if (toggleDice.get(0).getText().isEmpty())
-//		{
-//			
-//		}
-//		for (int i = 0; i < 5; i++)
-//		{
-//			flags[i] = toggleDice.get(i).isSelected();
-//		}
-		return flags;
+		if (justActivated)
+		{
+			justActivated = false;
+			return flags;
+		}
+		else
+		{
+			flags = new boolean[] {false, false, false, false, false};
+//			for (int i = 0; i < 5; i++)
+//			{
+//				flags[i] = toggleDice.get(i).isSelected();
+//			}
+			return flags;
+		}
+	}
+
+	public void activate()
+	{
+		 justActivated = true;
 	}
 
 }

@@ -89,5 +89,10 @@ public class YahtzeeGameView extends Stage implements View{
 		return yathzeeGamePanel.getRerollFlags();
 	}
 
+	public void activate()
+	{
+		this.yathzeeGamePanel.activate();
+	}
+
 
 }
