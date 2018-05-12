@@ -30,11 +30,7 @@ public class YahtzeeGamePanel extends BorderPane {
 	private ComboBox<String> categories;
 	private Button select;
 	private Label total;
-	private ToggleButton die1;
-	private ToggleButton die2;
-	private ToggleButton die3;
-	private ToggleButton die4;
-	private ToggleButton die5;
+	private List<ToggleButton> toggleDice;
 	private List<Integer> diceValues;
 
 	public YahtzeeGamePanel() {
@@ -54,7 +50,8 @@ public class YahtzeeGamePanel extends BorderPane {
 
 	private void addMainBoard() {
 		diceUi.setSpacing(5);
-		diceUi.getChildren().addAll(die1, die2, die3, die4, die5, throwDice);
+		diceUi.getChildren().addAll(toggleDice);
+		diceUi.getChildren().add(throwDice);
 
 		categoryAndNext.setSpacing(5);
 		categoryAndNext.setPadding(new Insets(10, 0, 0, 0));
@@ -125,11 +122,11 @@ public class YahtzeeGamePanel extends BorderPane {
 	}
 
 	private void createDice() {
-		die1 = new ToggleButton();
-		die2 = new ToggleButton();
-		die3 = new ToggleButton();
-		die4 = new ToggleButton();
-		die5 = new ToggleButton();
+		toggleDice = new ArrayList<ToggleButton>(5);
+		for (int i = 0; i < 5; i++)
+		{
+			toggleDice.add(new ToggleButton());
+		}
 	}
 
 	private void createCategoriesCombo() {
@@ -156,6 +153,10 @@ public class YahtzeeGamePanel extends BorderPane {
 
 	public void setDice(ArrayList<Integer> diceValues) {
 		this.diceValues = diceValues;
+		for (int i = 0; i < toggleDice.size(); i++)
+		{
+			toggleDice.get(i).setText(diceValues.get(i).toString());
+		}
 	}
 
 	public void setTotal(int total) {
@@ -164,14 +165,6 @@ public class YahtzeeGamePanel extends BorderPane {
 
 	public String getCategoryValue() {
 		return categories.getValue();
-	}
-
-	public void update() {
-		die1.setText(diceValues.get(0).toString());
-		die2.setText(diceValues.get(1).toString());
-		die3.setText(diceValues.get(2).toString());
-		die4.setText(diceValues.get(3).toString());
-		die5.setText(diceValues.get(4).toString());
 	}
 
 	public void setRollButtonHandler(EventHandler<ActionEvent> rollButtonHandler)
@@ -186,8 +179,16 @@ public class YahtzeeGamePanel extends BorderPane {
 	
 	public boolean[] getRerollFlags()
 	{
-//		this.die1.get
-		return null;
+		boolean[] flags = new boolean[] {true, true, true, true, true};
+//		if (toggleDice.get(0).getText().isEmpty())
+//		{
+//			
+//		}
+//		for (int i = 0; i < 5; i++)
+//		{
+//			flags[i] = toggleDice.get(i).isSelected();
+//		}
+		return flags;
 	}
 
 }

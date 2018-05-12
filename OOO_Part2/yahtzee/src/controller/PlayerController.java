@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.domain.Game;
@@ -31,7 +34,7 @@ public class PlayerController
 		@Override
 		public void handle(ActionEvent event)
 		{
-//			game.roll(window.getRerollFlags());
+			game.roll(window.getRerollFlags());
 //			window.canChooseEndCategory(game.canChooseEndCategory());
 //			window.canRoll(game.canRoll());
 //			mainController.globalGameStateUpdate();
@@ -51,14 +54,14 @@ public class PlayerController
 	
 	public void GameStateUpdate()
 	{
-//		window.setDiceValues(game.getDiceValues());
+		window.setDice(ArrayList<Integer>(Arrays.asList(game.getDiceValues())));
 //		window.setScoreCard(game.getScoreCard);
 //		this.window.setActivePlayer(this.game.activePlayer().getName());
 	}
 	
 	public void Activate()
 	{
-//		this.window.canRoll(true);
+		//this.window.canRoll(true);
 	}
 	
 }

@@ -64,10 +64,6 @@ public class YahtzeeGameView extends Stage implements View{
 		getYathzeeGamePanel().setDice(diceValues);
 	}
 	
-	public void update() {
-		getYathzeeGamePanel().update();
-	}
-	
 	public void start() {
 		getStage().show();
 	}
@@ -86,6 +82,11 @@ public class YahtzeeGameView extends Stage implements View{
 	public void setCategoryChoiceHandler(EventHandler<ActionEvent> CategoryChoiceHandler)
 	{
 		this.getYathzeeGamePanel().setCategoryChoiceHandler(CategoryChoiceHandler);
+	}
+
+	public boolean[] getRerollFlags()
+	{
+		return yathzeeGamePanel.getRerollFlags();
 	}
 
 
