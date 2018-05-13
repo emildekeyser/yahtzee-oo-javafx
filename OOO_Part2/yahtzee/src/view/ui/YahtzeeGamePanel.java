@@ -1,6 +1,8 @@
 package view.ui;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -14,6 +16,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import model.domain.CategoryType;
+import model.domain.Player;
+import model.domain.ScoreData;
 
 public class YahtzeeGamePanel extends BorderPane {
 
@@ -60,7 +64,6 @@ public class YahtzeeGamePanel extends BorderPane {
 		categoryAndNext.setPadding(new Insets(10, 0, 0, 0));
 		categoryAndNext.getChildren().addAll(categories, select);
 		createCategoriesCombo();
-
 	}
 
 	private void createBoard() {
@@ -111,6 +114,13 @@ public class YahtzeeGamePanel extends BorderPane {
 		hbox.getChildren().addAll(scoreBoard, scoreBoardScores);
 		return hbox;
 	}
+	
+	public void setScores(LinkedHashMap<Player, EnumMap<CategoryType, Integer>> scores) {
+		for (int i = 0; i < scores.size(); i++)
+		{
+			// TODO
+		}
+	}
 
 	private void createMainField() {
 		addMainBoard();
@@ -145,14 +155,6 @@ public class YahtzeeGamePanel extends BorderPane {
 
 	public void setActivePlayerName(String playerName) {
 		this.currentPlayerText.setText("Current player: " + playerName);
-	}
-
-	public void setScores(ArrayList<Integer> scores) {
-		int i = 0;
-		for (Label l : scoresLabelList) {
-			l.setText(scores.get(i).toString());
-			i++;
-		}
 	}
 
 	public void setDice(ArrayList<Integer> diceValues) {
@@ -203,16 +205,13 @@ public class YahtzeeGamePanel extends BorderPane {
 	public void activate()
 	{
 		 justActivated = true;
-		 this.canChooseCategory(true);
 		 this.canRoll(true);
-		 System.out.println(this.playerText.getText() + " activated");
 	}
 	
 	public void deactivate()
 	{
 		this.canChooseCategory(false);
 		this.canRoll(false);
-		System.out.println(this.playerText.getText() + " DEactivated");
 	}
 	
 	// The !! are important we want to work with true = enable and false = disable

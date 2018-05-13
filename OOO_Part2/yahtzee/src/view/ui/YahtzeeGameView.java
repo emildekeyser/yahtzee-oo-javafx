@@ -1,14 +1,18 @@
 package view.ui;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.domain.CategoryType;
+import model.domain.Player;
+import model.domain.ScoreData;
 
-public class YahtzeeGameView extends Stage implements View{
+public class YahtzeeGameView extends Stage{
 
 	private YahtzeeGamePanel yathzeeGamePanel;
 	private Stage stage;
@@ -49,7 +53,7 @@ public class YahtzeeGameView extends Stage implements View{
 		getYathzeeGamePanel().setPlayerName(playerName);
 	}
 
-	public void setScores(ArrayList<Integer> scores) {
+	public void setScores(LinkedHashMap<Player, EnumMap<CategoryType, Integer>> scores) {
 		getYathzeeGamePanel().setScores(scores);
 	}
 
@@ -69,7 +73,6 @@ public class YahtzeeGameView extends Stage implements View{
 		getStage().show();
 	}
 
-	@Override
 	public void setActivePlayerName(String playerName)
 	{
 		getYathzeeGamePanel().setActivePlayerName(playerName);

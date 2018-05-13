@@ -1,6 +1,8 @@
 package model.domain;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
 
 public class Yahtzee extends Game
 {
@@ -13,7 +15,7 @@ public class Yahtzee extends Game
 		super(players);
 		this.currentDice = new Dice();
 		this.rollCounter = 0;
-		this.scoreCard = new ScoreCard();
+		this.scoreCard = new ScoreCard(super.players);
 	}
 
 	@Override
@@ -58,6 +60,11 @@ public class Yahtzee extends Game
 		this.scoreCard.save(this.activePlayer(), type, this.currentDice);
 		this.players.rotate();
 		this.rollCounter = 0;
+	}
+
+	public LinkedHashMap<Player, EnumMap<CategoryType, Integer>> getScoreCard()
+	{
+		return this.scoreCard.getAllScoreData();
 	}
 
 }

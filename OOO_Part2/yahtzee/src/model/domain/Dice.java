@@ -6,12 +6,14 @@ public class Dice
 {
 	private int values[];
 	
-	public Dice()
+	// package visible
+	Dice()
 	{
 		this.values = new int[] {0,0,0,0,0};
 	}
 	
-	public void roll(boolean[] flags)
+	// package visible
+	void roll(boolean[] flags)
 	{
 //		if(flags.length != values.length || flags == null)
 //		{
@@ -31,10 +33,12 @@ public class Dice
 
 	public int[] getValues()
 	{
-		return this.values.clone();
+		final int[] immutableClone = this.values.clone(); 
+		return immutableClone;
 	}
-
-	public void roll()
+	
+	// package visible
+	void roll()
 	{
 		 this.roll(new boolean[]{true, true, true, true, true});
 	}

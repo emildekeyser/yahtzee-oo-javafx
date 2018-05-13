@@ -26,8 +26,15 @@ public class GameSetupController
 		@Override
 		public void handle(ActionEvent arg0)
 		{
-			suite.registerPlayer(setupWindow.getPlayerName());
-			setupWindow.addPlayerName(setupWindow.getPlayerName());
+			try
+			{
+				suite.registerPlayer(setupWindow.getPlayerName());
+				setupWindow.addPlayerName(setupWindow.getPlayerName());
+			}
+			catch (Exception e)
+			{
+				JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 0);
+			}
 		}	
 	}
 	

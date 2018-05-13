@@ -42,4 +42,10 @@ public class ScoreData {
 		this.score = score;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "ScoreData [player=" + player + ", category=" + category + ", score=" + score + "]";
+	}
+
 }

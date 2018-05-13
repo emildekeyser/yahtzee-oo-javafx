@@ -1,8 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.domain.Game;
@@ -25,8 +23,6 @@ public class PlayerController
 		
 		this.window.setRollButtonHandler(new RollButtonHandler());
 		this.window.setCategoryChoiceHandler(new CategoryChoiceHandler());
-		
-//		this.window.setScoreCard(this.game.getScoreCard());
 	}
 	
 	private class RollButtonHandler implements EventHandler<ActionEvent>
@@ -61,7 +57,7 @@ public class PlayerController
 		}
 		window.setDice(l);
 		
-//		window.setScoreCard(game.getScoreCard);
+		window.setScores(game.getScoreCard());
 		this.window.setActivePlayerName(this.game.activePlayer().getName());
 	}
 	
