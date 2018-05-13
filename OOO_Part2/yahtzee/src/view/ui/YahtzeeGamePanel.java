@@ -205,27 +205,32 @@ public class YahtzeeGamePanel extends BorderPane {
 		 justActivated = true;
 		 this.canChooseCategory(true);
 		 this.canRoll(true);
+		 System.out.println(this.playerText.getText() + " activated");
 	}
 	
 	public void deactivate()
 	{
 		this.canChooseCategory(false);
 		this.canRoll(false);
+		System.out.println(this.playerText.getText() + " DEactivated");
 	}
-
+	
+	// The !! are important we want to work with true = enable and false = disable
+	// but since the node method is 'setDisabled' we have to flip the boolean values
 	public void canChooseCategory(boolean canChooseCategory)
 	{
-		this.categories.setDisable(canChooseCategory);
-		this.select.setDisable(canChooseCategory);
+		this.categories.setDisable(!canChooseCategory);
+		this.select.setDisable(!canChooseCategory);
 	}
-
+	
+	// see canChooseCategory comment
 	public void canRoll(boolean canRoll)
 	{
 		for (ToggleButton btn : this.toggleDice)
 		{
-			btn.setDisable(canRoll);
+			btn.setDisable(!canRoll);
 		}
-		this.throwDice.setDisable(canRoll);
+		this.throwDice.setDisable(!canRoll);
 	}
 
 }
