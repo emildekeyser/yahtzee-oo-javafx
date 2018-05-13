@@ -45,7 +45,7 @@ public class Yahtzee extends Game
 	
 	public boolean canChooseCategory()
 	{
-		return this.rollCounter < 1;
+		return this.rollCounter > 0;
 	}
 
 	public int[] getDiceValues()
