@@ -1,10 +1,13 @@
 package model.domain.categories;
 
+import model.domain.CategoryType;
 import model.domain.Dice;
 import model.domain.DomainException;
 
 public class Twos implements Category
 {
+	
+	CategoryType categoryType = CategoryType.TWOS;
 
 	@Override
 	public boolean validDice(Dice dice)
@@ -38,6 +41,12 @@ public class Twos implements Category
 			throw new DomainException("Dice don't contain a two.");
 		}
 		return output;
+	}
+
+	@Override
+	public CategoryType getCategoryType()
+	{
+		return this.categoryType;
 	}
 
 }

@@ -1,10 +1,13 @@
 package model.domain.categories;
 
+import model.domain.CategoryType;
 import model.domain.Dice;
 import model.domain.DomainException;
 
 public class Threes implements Category
 {
+	
+	CategoryType categoryType = CategoryType.THREES;
 
 	@Override
 	public boolean validDice(Dice dice)
@@ -38,6 +41,12 @@ public class Threes implements Category
 			throw new DomainException("Dice don't contain a three.");
 		}
 		return output;
+	}
+
+	@Override
+	public CategoryType getCategoryType()
+	{
+		return this.categoryType;
 	}
 
 }

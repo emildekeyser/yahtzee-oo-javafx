@@ -1,10 +1,13 @@
 package model.domain.categories;
 
+import model.domain.CategoryType;
 import model.domain.Dice;
 import model.domain.DomainException;
 
 public class FullHouse implements Category
 {
+	
+	CategoryType categoryType = CategoryType.FULLHOUSE;
 
 	@Override
 	public boolean validDice(Dice dice)
@@ -30,6 +33,12 @@ public class FullHouse implements Category
 			throw new DomainException("Dice aren't a full house.");
 		}
 		return 25;
+	}
+
+	@Override
+	public CategoryType getCategoryType()
+	{
+		return this.categoryType;
 	}
 
 }

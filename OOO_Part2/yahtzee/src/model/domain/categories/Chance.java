@@ -1,9 +1,12 @@
 package model.domain.categories;
 
+import model.domain.CategoryType;
 import model.domain.Dice;
 
 public class Chance implements Category
 {
+	
+	CategoryType categoryType = CategoryType.CHANCE;
 
 	@Override
 	public boolean validDice(Dice dice)
@@ -20,6 +23,12 @@ public class Chance implements Category
 			output += value;
 		}
 		return output;
+	}
+
+	@Override
+	public CategoryType getCategoryType()
+	{
+		return this.categoryType;
 	}
 
 }
