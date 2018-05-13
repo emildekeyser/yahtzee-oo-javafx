@@ -1,10 +1,13 @@
 package model.domain.categories;
 
+import model.domain.CategoryType;
 import model.domain.Dice;
 import model.domain.DomainException;
 
 public class Yahtzee implements Category
 {
+	
+	CategoryType categoryType = CategoryType.YAHTZEE;
 
 	@Override
 	public boolean validDice(Dice dice)
@@ -28,6 +31,12 @@ public class Yahtzee implements Category
 			throw new DomainException("Dice aren't a yahtzee.");
 		}
 		return 50;
+	}
+
+	@Override
+	public CategoryType getCategoryType()
+	{
+		return this.categoryType;
 	}
 
 }

@@ -1,10 +1,13 @@
 package model.domain.categories;
 
+import model.domain.CategoryType;
 import model.domain.Dice;
 import model.domain.DomainException;
 
 public class LargeStraight implements Category
 {
+	
+	CategoryType categoryType = CategoryType.LARGESTRAIGHT;
 
 	@Override
 	public boolean validDice(Dice dice)
@@ -28,6 +31,12 @@ public class LargeStraight implements Category
 			throw new DomainException("Dice aren't a small straight.");
 		}
 		return 40;
+	}
+
+	@Override
+	public CategoryType getCategoryType()
+	{
+		return this.categoryType;
 	}
 
 }
