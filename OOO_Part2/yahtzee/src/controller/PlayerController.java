@@ -69,5 +69,10 @@ public class PlayerController
 	{
 		this.window.activate();
 	}
+
+	public void kill()
+	{
+		this.window.stop();
+	}
 	
 }

@@ -27,7 +27,7 @@ public class ScoreCard
 	
 	public void save(Player player, CategoryType type, Dice dice)
 	{
-		this.data.get(player).put(type, 100);
+		this.data.get(player).put(type, 100); // TODO parser geeft hier de juiste waarde i.p.v.100
 	}
 
 	public LinkedHashMap<Player, EnumMap<CategoryType, Integer>> getAllScoreData()
@@ -75,16 +75,47 @@ public class ScoreCard
 		return a;
 	}
 
-	public List<CategoryType> getAllowedCategories(Player activePlayer)
+	 // dice mag null zijn wanneer er nog niet gerold is
+	public List<CategoryType> getAllowedCategories(Player activePlayer, Dice dice)
 	{
 		ArrayList<CategoryType> allowed = new ArrayList<>(13); 
 		for (CategoryType type : CategoryType.values())
 		{
-			if (this.data.get(activePlayer).get(type) == 0) // && TODO parser.valid
+			if (this.data.get(activePlayer).get(type) == 0) // && TODO parser.valid if !(dice == null)
 			{
 				allowed.add(type);
 			}
 		}
 		return allowed;
+	}
+
+	public boolean allFilled()
+	{
+		boolean ret = true;
+		for (Player player : this.data.keySet())
+		{
+			ret &= this.getAllowedCategories(player, null).size() == 0;
+		}
+		return ret;
+	}
+
+	public String winner()
+	{
+		if (this.allFilled())
+		{
+			Player winner = this.data.keySet().iterator().next(); // heeft geen get ?
+			for (Player player : this.data.keySet())
+			{
+				if (calculateBonuses(player).get(BonusType.GRANDTOTAL) > calculateBonuses(winner).get(BonusType.GRANDTOTAL))
+				{
+					winner = player;
+				}
+			}
+			return winner.getName();
+		}
+		else
+		{
+			return "";
+		}
 	}
 }

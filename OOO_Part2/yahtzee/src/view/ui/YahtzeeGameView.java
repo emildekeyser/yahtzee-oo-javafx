@@ -119,5 +119,11 @@ public class YahtzeeGameView extends Stage{
 		this.yathzeeGamePanel.setCategoryCoices(allowedCategories);
 	}
 
+	public void stop()
+	{
+		this.stage.close();
+		this.close(); // is dit nodig ?
+	}
+
 
 }

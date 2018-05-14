@@ -74,9 +74,13 @@ public class Yahtzee extends Game
 
 	public List<CategoryType> getAllowedCategories()
 	{
-		return this.scoreCard.getAllowedCategories(this.activePlayer());
+		Dice d = this.rollCounter == 0 ? null : this.currentDice;
+		return this.scoreCard.getAllowedCategories(this.activePlayer(), d);
 	}
-	
-	
 
+	@Override
+	public String winner()
+	{
+		return this.scoreCard.winner();
+	}
 }

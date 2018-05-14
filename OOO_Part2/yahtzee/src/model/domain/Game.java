@@ -16,4 +16,5 @@ public abstract class Game
 	{
 		return players.activePlayer();
 	}
+	public abstract String winner();
 }
