@@ -1,18 +1,23 @@
 package model.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 
+import model.domain.categories.CategoryParser;
+
 public class ScoreCard
 {
 	private LinkedHashMap<Player, EnumMap<CategoryType, Integer>> data;
+	private CategoryParser parser;
 	
 	public ScoreCard(PlayerListing players)
 	{
+		this.parser = new CategoryParser();
 		this.data = new LinkedHashMap<>();
 		for (Player player : players)
 		{
@@ -27,7 +32,15 @@ public class ScoreCard
 	
 	public void save(Player player, CategoryType type, Dice dice)
 	{
-		this.data.get(player).put(type, 100); // TODO parser geeft hier de juiste waarde i.p.v.100
+		if (this.data.get(player).get(type) > 0)
+		{
+			this.data.get(player).put(type, -1);
+		}
+		else
+		{
+			int score = this.parser.CalculateCategory(type, dice);
+			this.data.get(player).put(type, score);
+		}
 	}
 
 	public LinkedHashMap<Player, EnumMap<CategoryType, Integer>> getAllScoreData()
@@ -78,10 +91,20 @@ public class ScoreCard
 	 // dice mag null zijn wanneer er nog niet gerold is
 	public List<CategoryType> getAllowedCategories(Player activePlayer, Dice dice)
 	{
-		ArrayList<CategoryType> allowed = new ArrayList<>(13); 
-		for (CategoryType type : CategoryType.values())
+		List<CategoryType> values;
+		if (dice != null && this.parser.validCategories(dice).size() > 0) // Dit zou beter moeten met een aparte ui voor score suggesties
 		{
-			if (this.data.get(activePlayer).get(type) == 0) // && TODO parser.valid if !(dice == null)
+			values = this.parser.validCategories(dice);
+		}
+		else
+		{
+			values = Arrays.asList(CategoryType.values());
+		}
+		
+		ArrayList<CategoryType> allowed = new ArrayList<>(13); 
+		for (CategoryType type : values)
+		{
+			if (this.data.get(activePlayer).get(type) == 0)
 			{
 				allowed.add(type);
 			}

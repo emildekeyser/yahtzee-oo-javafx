@@ -12,7 +12,7 @@ public class CategoryParser
 	private HashMap<CategoryType, Category> categoryStrategies;
 	
 	public CategoryParser()
-	{ // Ik wist niet hoe ik het moest automatiseren dus ik heb het semi handmatig gedaan.
+	{
 		categoryStrategies = new HashMap<>();
 		categoryStrategies.put(CategoryType.ACES, new Aces());
 		categoryStrategies.put(CategoryType.CHANCE, new Chance());
