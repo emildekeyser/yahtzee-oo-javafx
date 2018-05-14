@@ -36,7 +36,9 @@ public class YahtzeeGamePanel extends BorderPane {
 	private Label total;
 	private List<ToggleButton> toggleDice;
 	private List<Integer> diceValues;
+	
 	private boolean justActivated;
+	private ScoreCardView scoreCard;
 
 	public YahtzeeGamePanel() {
 		createBoard();
@@ -91,35 +93,34 @@ public class YahtzeeGamePanel extends BorderPane {
 		for (int i = 1; i<6; i++) {
 			diceValues.add(i);
 		}
+		
+		scoreCard = new ScoreCardView();
 	}
 
 	private HBox createScoreBoard() {
-		HBox hbox = new HBox();
-		int row = 0;
-		for (CategoryType t : CategoryType.values()) {
-			Label l = new Label();
-			l.setText(t.toString());
-			scoreBoard.add(l, 0, row);
-			row++;
-		}
-		scoreBoard.add(total, 0, 13);
-		row = 0;
-		for (int i = 0; i < 13; i++) {
-			Label l = new Label("test");
-			scoreBoardScores.add(l, 0, row);
-			scoresLabelList.add(l);
-			row++;
-		}
-		scoreBoardScores.setPadding(new Insets(0, 5, 0, 5));
-		hbox.getChildren().addAll(scoreBoard, scoreBoardScores);
-		return hbox;
+//		HBox hbox = new HBox();
+//		int row = 0;
+//		for (CategoryType t : CategoryType.values()) {
+//			Label l = new Label();
+//			l.setText(t.toString());
+//			scoreBoard.add(l, 0, row);
+//			row++;
+//		}
+//		scoreBoard.add(total, 0, 13);
+//		row = 0;
+//		for (int i = 0; i < 13; i++) {
+//			Label l = new Label("test");
+//			scoreBoardScores.add(l, 0, row);
+//			scoresLabelList.add(l);
+//			row++;
+//		}
+//		scoreBoardScores.setPadding(new Insets(0, 5, 0, 5));
+//		hbox.getChildren().addAll(scoreBoard, scoreBoardScores);
+		return scoreCard.getHbox();
 	}
 	
 	public void setScores(LinkedHashMap<Player, EnumMap<CategoryType, Integer>> scores) {
-		for (int i = 0; i < scores.size(); i++)
-		{
-			// TODO
-		}
+		scoreCard.setScores(scores);
 	}
 
 	private void createMainField() {

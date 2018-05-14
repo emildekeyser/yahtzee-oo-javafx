@@ -34,6 +34,7 @@ public class GameSetupController
 			catch (Exception e)
 			{
 				JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 0);
+				e.printStackTrace();
 			}
 		}	
 	}
@@ -52,6 +53,7 @@ public class GameSetupController
 			catch (Exception e)
 			{
 				JOptionPane.showMessageDialog(null, e.getMessage(), "Error", 0);
+				e.printStackTrace();
 			}
 		}	
 	}

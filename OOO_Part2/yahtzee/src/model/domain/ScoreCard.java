@@ -20,7 +20,7 @@ public class ScoreCard
 			
 			for (CategoryType type : CategoryType.values())
 			{
-				this.data.get(player.getName()).put(type, 0);
+				this.data.get(player).put(type, 0);
 			}
 		}
 	}
