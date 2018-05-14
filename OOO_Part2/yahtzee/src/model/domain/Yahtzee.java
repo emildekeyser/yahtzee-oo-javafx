@@ -3,6 +3,7 @@ package model.domain;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class Yahtzee extends Game
 {
@@ -57,14 +58,25 @@ public class Yahtzee extends Game
 
 	public void ready(CategoryType type)
 	{
-		this.scoreCard.save(this.activePlayer(), type, this.currentDice);
-		this.players.rotate();
-		this.rollCounter = 0;
+		if (type == null){throw new DomainException("No Category chosen!");}
+		else
+		{
+			this.scoreCard.save(this.activePlayer(), type, this.currentDice);
+			this.players.rotate();
+			this.rollCounter = 0;
+		}
 	}
 
 	public LinkedHashMap<Player, EnumMap<CategoryType, Integer>> getScoreCard()
 	{
 		return this.scoreCard.getAllScoreData();
 	}
+
+	public List<CategoryType> getAllowedCategories()
+	{
+		return this.scoreCard.getAllowedCategories(this.activePlayer());
+	}
+	
+	
 
 }

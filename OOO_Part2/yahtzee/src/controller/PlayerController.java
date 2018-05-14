@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.domain.Game;
@@ -23,6 +25,7 @@ public class PlayerController
 		
 		this.window.setRollButtonHandler(new RollButtonHandler());
 		this.window.setCategoryChoiceHandler(new CategoryChoiceHandler());
+		window.setCategoryCoices(this.game.getAllowedCategories());
 	}
 	
 	private class RollButtonHandler implements EventHandler<ActionEvent>
@@ -31,6 +34,7 @@ public class PlayerController
 		public void handle(ActionEvent event)
 		{
 			game.roll(window.getRerollFlags());
+			window.setCategoryCoices(game.getAllowedCategories());
 			window.canChooseCategory(game.canChooseCategory());
 			window.canRoll(game.canRoll());
 			mainController.globalGameStateUpdate();

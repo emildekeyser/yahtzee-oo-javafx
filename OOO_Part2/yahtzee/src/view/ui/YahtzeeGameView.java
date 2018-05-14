@@ -3,6 +3,7 @@ package view.ui;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -111,6 +112,11 @@ public class YahtzeeGameView extends Stage{
 	public void deactivate()
 	{
 		this.yathzeeGamePanel.deactivate();
+	}
+
+	public void setCategoryCoices(List<CategoryType> allowedCategories)
+	{
+		this.yathzeeGamePanel.setCategoryCoices(allowedCategories);
 	}
 
 

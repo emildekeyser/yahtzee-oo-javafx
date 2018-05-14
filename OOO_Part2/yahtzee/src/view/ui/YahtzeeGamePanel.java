@@ -65,7 +65,7 @@ public class YahtzeeGamePanel extends BorderPane {
 		categoryAndNext.setSpacing(5);
 		categoryAndNext.setPadding(new Insets(10, 0, 0, 0));
 		categoryAndNext.getChildren().addAll(categories, select);
-		createCategoriesCombo();
+		//createCategoriesCombo();
 	}
 
 	private void createBoard() {
@@ -143,12 +143,9 @@ public class YahtzeeGamePanel extends BorderPane {
 		}
 	}
 
-	private void createCategoriesCombo() {
-//		for (CategoryType t : CategoryType.values()) {
-//			categories.getItems().add(t.toString());
-//		}
-		categories.getItems().addAll(CategoryType.values());
-	}
+//	private void createCategoriesCombo() {
+//		categories.getItems().addAll(CategoryType.values());
+//	}
 
 	public void setPlayerName(String playerName) {
 		playerText.setText("Player: " + playerName);
@@ -231,6 +228,13 @@ public class YahtzeeGamePanel extends BorderPane {
 			btn.setDisable(!canRoll);
 		}
 		this.throwDice.setDisable(!canRoll);
+	}
+
+	public void setCategoryCoices(List<CategoryType> allowedCategories)
+	{
+		this.categories.getItems().clear();
+		this.categories.getItems().addAll(allowedCategories);
+		this.categories.getSelectionModel().select(0);
 	}
 
 }

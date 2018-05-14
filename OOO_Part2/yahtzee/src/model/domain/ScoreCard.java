@@ -27,7 +27,6 @@ public class ScoreCard
 	
 	public void save(Player player, CategoryType type, Dice dice)
 	{
-		//this.data.add(new ScoreData(player, type, 100)); // TODO parse score
 		this.data.get(player).put(type, 100);
 	}
 
@@ -74,5 +73,18 @@ public class ScoreCard
 			}
 		}
 		return a;
+	}
+
+	public List<CategoryType> getAllowedCategories(Player activePlayer)
+	{
+		ArrayList<CategoryType> allowed = new ArrayList<>(13); 
+		for (CategoryType type : CategoryType.values())
+		{
+			if (this.data.get(activePlayer).get(type) == 0) // && TODO parser.valid
+			{
+				allowed.add(type);
+			}
+		}
+		return allowed;
 	}
 }
