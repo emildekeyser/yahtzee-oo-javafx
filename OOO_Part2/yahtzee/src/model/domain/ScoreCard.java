@@ -98,7 +98,12 @@ public class ScoreCard
 		}
 		else
 		{
-			values = Arrays.asList(CategoryType.values());
+//			values = Arrays.asList(CategoryType.values());
+			values = new ArrayList<>(13);
+			for (CategoryType type : CategoryType.values())
+			{
+				values.add(type);
+			}
 		}
 		
 		ArrayList<CategoryType> allowed = new ArrayList<>(13); 
