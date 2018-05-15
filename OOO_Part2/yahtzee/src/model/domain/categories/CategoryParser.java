@@ -2,6 +2,7 @@ package model.domain.categories;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import model.domain.CategoryType;
 import model.domain.Dice;
@@ -29,7 +30,7 @@ public class CategoryParser
 		categoryStrategies.put(CategoryType.YAHTZEE, new Yahtzee());
 	}
 	
-	public ArrayList<CategoryType> validCategories(Dice dice)
+	public List<CategoryType> validCategories(Dice dice)
 	{
 		ArrayList<CategoryType> output = new ArrayList<CategoryType>();
 		for (CategoryType categoryType : CategoryType.values()) {
