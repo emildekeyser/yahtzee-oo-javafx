@@ -3,8 +3,9 @@ package model.domain;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-public class PlayerListing implements Iterable<Player>
+public class PlayerListing implements Iterable<String>
 {
 	private LinkedList<Player> players;
 	
@@ -35,9 +36,39 @@ public class PlayerListing implements Iterable<Player>
 	}
 
 	@Override
-	public Iterator<Player> iterator()
+	public Iterator<String> iterator()
 	{
-		return this.players.iterator();
+		return new PlayerNameIterator();
+		
+	}
+	
+	private class PlayerNameIterator implements Iterator<String>
+	{
+		private int index;
+		
+		public PlayerNameIterator()
+		{
+			this.index = 0;
+		}
+		
+		@Override
+		public boolean hasNext()
+		{
+			return this.index < players.size();
+		}
+
+		@Override
+		public String next()
+		{
+			if (this.hasNext())
+			{
+				int i = this.index;
+				this.index++;
+				return players.get(i).getName();
+			}
+			throw new NoSuchElementException();
+		}
+		
 	}
 
 	public Player activePlayer()
@@ -54,6 +85,18 @@ public class PlayerListing implements Iterable<Player>
 	public boolean isEmpty()
 	{
 		return this.players.isEmpty();
+	}
+
+	public Player find(String playerName)
+	{
+		for (Player player : this.players)
+		{
+			if (player.getName().equals(playerName))
+			{
+				return player;
+			}
+		}
+		throw new DomainException("Tried to start the game with a non existent player!");
 	}
 	
 }

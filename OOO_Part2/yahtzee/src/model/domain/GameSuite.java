@@ -2,7 +2,7 @@ package model.domain;
 
 import java.util.Iterator;
 
-public class GameSuite implements Iterable<Player>
+public class GameSuite implements Iterable<String>
 {
 	PlayerListing players;
 	Game game;
@@ -18,7 +18,7 @@ public class GameSuite implements Iterable<Player>
 	}
 
 	@Override
-	public Iterator<Player> iterator()
+	public Iterator<String> iterator()
 	{
 		return this.players.iterator();
 	}

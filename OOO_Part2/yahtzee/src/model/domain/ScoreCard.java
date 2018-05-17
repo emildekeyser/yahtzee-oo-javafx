@@ -19,27 +19,46 @@ public class ScoreCard
 	{
 		this.parser = new CategoryParser();
 		this.data = new LinkedHashMap<>();
-		for (Player player : players)
+		for (String playerName : players)
 		{
-			this.data.put(player, new EnumMap<CategoryType, Integer>(CategoryType.class));
+			this.data.put(players.find(playerName), new EnumMap<CategoryType, Integer>(CategoryType.class));
 			
 			for (CategoryType type : CategoryType.values())
 			{
-				this.data.get(player).put(type, 0);
+				for (Player player : this.data.keySet())
+				{
+					this.data.get(player).put(type, 0);
+				}
 			}
 		}
 	}
 	
 	public void save(Player player, CategoryType type, Dice dice)
 	{
-		if (this.data.get(player).get(type) > 0)
+		if (this.parser.validCategories(dice).contains(type))
 		{
-			this.data.get(player).put(type, -1);
+			if (this.data.get(player).get(type).equals(0))
+			{
+				int score = this.parser.CalculateCategory(type, dice);
+				this.data.get(player).put(type, score);
+			}
+			else
+			{
+				this.data.get(player).put(type, -2);
+				throw new DomainException("Cheating");
+			}
 		}
 		else
 		{
-			int score = this.parser.CalculateCategory(type, dice);
-			this.data.get(player).put(type, score);
+			if (this.data.get(player).get(type).equals(0))
+			{
+				this.data.get(player).put(type, -1);
+			}
+			else
+			{
+				this.data.get(player).put(type, -2);
+				throw new DomainException("Cheating");
+			}
 		}
 	}
 
@@ -99,17 +118,17 @@ public class ScoreCard
 		else
 		{
 //			values = Arrays.asList(CategoryType.values());
-			values = new ArrayList<>(13);
+			values = new ArrayList<>();
 			for (CategoryType type : CategoryType.values())
 			{
 				values.add(type);
 			}
 		}
 		
-		ArrayList<CategoryType> allowed = new ArrayList<>(13); 
+		ArrayList<CategoryType> allowed = new ArrayList<>(); 
 		for (CategoryType type : values)
 		{
-			if (this.data.get(activePlayer).get(type) == 0)
+			if (this.data.get(activePlayer).get(type).equals(0))
 			{
 				allowed.add(type);
 			}

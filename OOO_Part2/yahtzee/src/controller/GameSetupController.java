@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,8 +47,14 @@ public class GameSetupController
 		{
 			try
 			{
-				suite.chooseGame();
-				new MainController(suite);
+				suite.chooseGame();// Whenever more games are added this needs a parameter, also factory behind the scenes ?
+				
+				// Whenever more games are added this needs to be a factory ?
+				for (String playerName : suite)
+				{
+					new YahtzeeController(playerName, suite.game());
+				}
+				
 				setupWindow.stop();
 			}
 			catch (Exception e)
