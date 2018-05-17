@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import model.domain.categories.CategoryParser;
 
@@ -14,7 +15,7 @@ public class ScoreCard
 {
 	private LinkedHashMap<Player, EnumMap<CategoryType, Integer>> data;
 	private CategoryParser parser;
-	
+
 	public ScoreCard(PlayerListing players)
 	{
 		this.parser = new CategoryParser();
@@ -22,7 +23,7 @@ public class ScoreCard
 		for (String playerName : players)
 		{
 			this.data.put(players.find(playerName), new EnumMap<CategoryType, Integer>(CategoryType.class));
-			
+
 			for (CategoryType type : CategoryType.values())
 			{
 				for (Player player : this.data.keySet())
@@ -32,7 +33,7 @@ public class ScoreCard
 			}
 		}
 	}
-	
+
 	public void save(Player player, CategoryType type, Dice dice)
 	{
 		if (this.parser.validCategories(dice).contains(type))
@@ -66,7 +67,7 @@ public class ScoreCard
 	{
 		return this.data;
 	}
-	
+
 	public LinkedHashMap<Player, EnumMap<BonusType, Integer>> getAllBonusData()
 	{
 		LinkedHashMap<Player, EnumMap<BonusType, Integer>> ret = new LinkedHashMap<>();
@@ -80,17 +81,17 @@ public class ScoreCard
 	private EnumMap<BonusType, Integer> calculateBonuses(Player p)
 	{
 		EnumMap<BonusType, Integer> bonuses = new EnumMap<BonusType, Integer>(BonusType.class);
-		
+
 		int upperScore = calculate(p, "upper");
 		int bonus = upperScore >= 63 ? 35 : 0;
-		int lowerScore = calculate(p, "lower"); 
-		
-		bonuses.put(BonusType.UPPERSCORE, upperScore );
-		bonuses.put(BonusType.UPPERBONUS, bonus );
-		bonuses.put(BonusType.UPPERTOTAL, bonus + upperScore );
+		int lowerScore = calculate(p, "lower");
+
+		bonuses.put(BonusType.UPPERSCORE, upperScore);
+		bonuses.put(BonusType.UPPERBONUS, bonus);
+		bonuses.put(BonusType.UPPERTOTAL, bonus + upperScore);
 		bonuses.put(BonusType.LOWERSCORE, lowerScore);
 		bonuses.put(BonusType.GRANDTOTAL, lowerScore + upperScore + bonus);
-		
+
 		return bonuses;
 	}
 
@@ -106,51 +107,54 @@ public class ScoreCard
 		}
 		return a;
 	}
-
-	 // dice mag null zijn wanneer er nog niet gerold is
+	
+	// Dit zou een ui voor score suggesties moeten voorzien
 	public List<CategoryType> getAllowedCategories(Player activePlayer, Dice dice)
 	{
-		List<CategoryType> values;
-		if (dice != null && this.parser.validCategories(dice).size() > 0) // Dit zou beter moeten met een aparte ui voor score suggesties
+		ArrayList<CategoryType> notFilledIn = new ArrayList<>();
+		for (CategoryType type : CategoryType.values())
 		{
-			values = this.parser.validCategories(dice);
-		}
-		else
-		{
-//			values = Arrays.asList(CategoryType.values());
-			values = new ArrayList<>();
-			for (CategoryType type : CategoryType.values())
+			if (this.data.get(activePlayer).get(type).equals(0))
 			{
-				values.add(type);
+				notFilledIn.add(type);
 			}
 		}
 		
-		ArrayList<CategoryType> allowed = new ArrayList<>(); 
-		for (CategoryType type : values)
+		List<CategoryType> valid = this.parser.validCategories(dice); 
+		
+		ArrayList<CategoryType> allowed = new ArrayList<>();
+		for (CategoryType type : notFilledIn)
 		{
-			if (this.data.get(activePlayer).get(type).equals(0))
+			if (valid.contains(type))
 			{
 				allowed.add(type);
 			}
 		}
-		return allowed;
+		
+		return allowed.isEmpty() ? notFilledIn : allowed;
 	}
 
 	public boolean allFilled()
 	{
-		boolean ret = true;
 		for (Player player : this.data.keySet())
 		{
-			ret &= this.getAllowedCategories(player, null).size() == 0;
+			for (Integer score : this.data.get(player).values())
+			{
+				if (score.equals(0))
+				{
+					return false;
+				}
+			}
 		}
-		return ret;
+		return true;
 	}
 
 	public String winner()
 	{
 		if (this.allFilled())
 		{
-			Player winner = this.data.keySet().iterator().next(); // heeft geen get ?
+			Player winner = this.data.keySet().iterator().next(); // heeft geen
+																	// get ?
 			for (Player player : this.data.keySet())
 			{
 				if (calculateBonuses(player).get(BonusType.GRANDTOTAL) > calculateBonuses(winner).get(BonusType.GRANDTOTAL))
