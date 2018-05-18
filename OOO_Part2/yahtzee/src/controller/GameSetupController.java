@@ -50,10 +50,14 @@ public class GameSetupController
 				suite.chooseGame();// Whenever more games are added this needs a parameter, also factory behind the scenes ?
 				
 				// Whenever more games are added this needs to be a factory ?
+				// maybe the can be refactored to just suite.start(gameType)
+				// with suite having acces through an interface to the ControllerFactory.Make(GameType)
 				for (String playerName : suite)
 				{
 					new YahtzeeController(playerName, suite.game());
 				}
+				
+				suite.game().start();
 				
 				setupWindow.stop();
 			}

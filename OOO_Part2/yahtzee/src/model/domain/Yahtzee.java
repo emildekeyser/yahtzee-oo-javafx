@@ -18,7 +18,7 @@ public class Yahtzee extends Game
 	private int rollCounter;
 	private ScoreCard scoreCard;
 	private HashMap<Player, PlayerController> playerControllerMap;
-	
+
 	public Yahtzee(PlayerListing players)
 	{
 		super(players);
@@ -33,28 +33,28 @@ public class Yahtzee extends Game
 	{
 		return super.activePlayer();
 	}
-	
+
 	public void roll(boolean[] rerolFlags)
 	{
-		if(this.canRoll())
+		if (this.canRoll())
 		{
-			if(this.rollCounter < 1)
+			if (this.rollCounter < 1)
 			{
 				this.currentDice.roll();
 			}
-			else 
+			else
 			{
 				this.currentDice.roll(rerolFlags);
 			}
 			this.rollCounter++;
 		}
 	}
-	
+
 	public boolean canRoll()
 	{
 		return this.rollCounter < 3;
 	}
-	
+
 	public boolean canChooseCategory()
 	{
 		return this.rollCounter > 0;
@@ -67,7 +67,10 @@ public class Yahtzee extends Game
 
 	public void ready(CategoryType type)
 	{
-		if (type == null){throw new DomainException("No Category chosen!");}
+		if (type == null)
+		{
+			throw new DomainException("No Category chosen!");
+		}
 		else
 		{
 			this.scoreCard.save(this.activePlayer(), type, this.currentDice);
@@ -91,21 +94,20 @@ public class Yahtzee extends Game
 	{
 		return this.scoreCard.winner();
 	}
-	
+
 	public void registerController(String playerName, PlayerController playerCtrl)
 	{
 		this.playerControllerMap.put(this.players.find(playerName), playerCtrl);
-		this.playerReady();
 	}
 
 	public void globalGameStateUpdate()
 	{
-		for (PlayerController player : playerControllerMap .values())
+		for (PlayerController player : playerControllerMap.values())
 		{
 			player.gameStateUpdate();
 		}
 	}
-	
+
 	public void playerReady()
 	{
 		if (this.winner().isEmpty())
@@ -116,7 +118,7 @@ public class Yahtzee extends Game
 		else
 		{
 			this.globalGameStateUpdate();
-			
+
 			// Dit moet weg !!! naar een 'end game' controller ?
 			String msg = "Winner: " + this.winner();
 			int opt = JOptionPane.showConfirmDialog(null, msg, "Game Over!", JOptionPane.YES_NO_OPTION);
@@ -130,9 +132,20 @@ public class Yahtzee extends Game
 
 	private void killPlayers()
 	{
-		for (PlayerController player : this.playerControllerMap .values())
+		for (PlayerController player : this.playerControllerMap.values())
 		{
 			player.kill();
 		}
+	}
+
+	@Override
+	public void start()
+	{
+		this.playerReady();
+	}
+
+	public LinkedHashMap<Player, EnumMap<BonusType, Integer>> getBonuses()
+	{
+		return this.scoreCard.getAllBonusData();
 	}
 }

@@ -65,6 +65,7 @@ public class YahtzeeController implements PlayerController
 		window.setDice(l);
 		
 		window.setScores(game.getScoreCard());
+		window.setBonuses(game.getBonuses());
 		this.window.setActivePlayerName(this.game.activePlayer().getName());
 	}
 	

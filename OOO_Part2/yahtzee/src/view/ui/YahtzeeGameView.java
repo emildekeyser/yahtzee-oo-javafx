@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.domain.BonusType;
 import model.domain.CategoryType;
 import model.domain.Player;
 import model.domain.ScoreData;
@@ -123,6 +124,11 @@ public class YahtzeeGameView extends Stage{
 	{
 		this.stage.close();
 		this.close(); // is dit nodig ?
+	}
+
+	public void setBonuses(LinkedHashMap<Player, EnumMap<BonusType, Integer>> bonuses)
+	{
+		this.yathzeeGamePanel.setBonuses(bonuses);
 	}
 
 

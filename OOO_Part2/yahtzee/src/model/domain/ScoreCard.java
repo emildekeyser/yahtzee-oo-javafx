@@ -102,7 +102,8 @@ public class ScoreCard
 		{
 			if (type.location() == region)
 			{
-				a += this.data.get(p).get(type);
+				int score = this.data.get(p).get(type);
+				a += score < 0 ? 0 : score;
 			}
 		}
 		return a;

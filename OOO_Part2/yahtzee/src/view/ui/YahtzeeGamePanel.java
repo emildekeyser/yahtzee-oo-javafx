@@ -15,6 +15,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import model.domain.BonusType;
 import model.domain.CategoryType;
 import model.domain.Player;
 import model.domain.ScoreData;
@@ -98,29 +99,16 @@ public class YahtzeeGamePanel extends BorderPane {
 	}
 
 	private HBox createScoreBoard() {
-//		HBox hbox = new HBox();
-//		int row = 0;
-//		for (CategoryType t : CategoryType.values()) {
-//			Label l = new Label();
-//			l.setText(t.toString());
-//			scoreBoard.add(l, 0, row);
-//			row++;
-//		}
-//		scoreBoard.add(total, 0, 13);
-//		row = 0;
-//		for (int i = 0; i < 13; i++) {
-//			Label l = new Label("test");
-//			scoreBoardScores.add(l, 0, row);
-//			scoresLabelList.add(l);
-//			row++;
-//		}
-//		scoreBoardScores.setPadding(new Insets(0, 5, 0, 5));
-//		hbox.getChildren().addAll(scoreBoard, scoreBoardScores);
 		return scoreCard.getHbox();
 	}
 	
 	public void setScores(LinkedHashMap<Player, EnumMap<CategoryType, Integer>> scores) {
 		scoreCard.setScores(scores);
+	}
+	
+	public void setBonuses(LinkedHashMap<Player, EnumMap<BonusType, Integer>> bonuses)
+	{
+		 this.scoreCard.setBonuses(bonuses);
 	}
 
 	private void createMainField() {
@@ -142,10 +130,6 @@ public class YahtzeeGamePanel extends BorderPane {
 			toggleDice.add(new ToggleButton());
 		}
 	}
-
-//	private void createCategoriesCombo() {
-//		categories.getItems().addAll(CategoryType.values());
-//	}
 
 	public void setPlayerName(String playerName) {
 		playerText.setText("Player: " + playerName);
