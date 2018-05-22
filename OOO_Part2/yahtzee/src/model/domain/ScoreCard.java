@@ -170,4 +170,21 @@ public class ScoreCard
 			return "";
 		}
 	}
+
+	public String tempWinner() {
+		{
+				Player winner = this.data.keySet().iterator().next(); // heeft geen
+																		// get ?
+				int total = 0;
+				for (Player player : this.data.keySet())
+				{
+					if (calculateBonuses(player).get(BonusType.GRANDTOTAL) > calculateBonuses(winner).get(BonusType.GRANDTOTAL))
+					{
+						winner = player;
+						total = calculateBonuses(player).get(BonusType.GRANDTOTAL);
+					}
+				}
+				return winner.getName() + " is winning with a score of " + total + " points";
+		}
+	}
 }

@@ -27,6 +27,7 @@ public class YahtzeeGamePanel extends BorderPane {
 	private List<Integer> scores;
 	private List<Label> scoresLabelList;
 	private Button throwDice;
+	private Button stopGame;
 	private HBox diceUi;
 	private HBox categoryAndNext;
 	private GridPane mainBoard;
@@ -48,7 +49,8 @@ public class YahtzeeGamePanel extends BorderPane {
 	}
 
 	public String getPlayerName() {
-		return playerText.getText();
+		//deze moet alleen de naam terug geven
+		return playerText.getText().substring(8);
 	}
 
 	private void addUi() {
@@ -67,6 +69,7 @@ public class YahtzeeGamePanel extends BorderPane {
 		categoryAndNext.setPadding(new Insets(10, 0, 0, 0));
 		categoryAndNext.getChildren().addAll(categories, select);
 		//createCategoriesCombo();
+		
 	}
 
 	private void createBoard() {
@@ -91,6 +94,7 @@ public class YahtzeeGamePanel extends BorderPane {
 		scoresLabelList = new ArrayList<Label>();
 		total = new Label("TOTAL: ");
 		diceValues = new ArrayList<Integer>();
+		stopGame = new Button("Stop playing");
 		for (int i = 1; i<6; i++) {
 			diceValues.add(i);
 		}
@@ -118,9 +122,10 @@ public class YahtzeeGamePanel extends BorderPane {
 		
 		GridPane.setConstraints(diceUi, 0, 1);
 		GridPane.setConstraints(categoryAndNext, 0, 2);
+		GridPane.setConstraints(stopGame, 0,3);
 		
 		mainBoard.setPadding(new Insets(100, 0, 0, 10));
-		mainBoard.getChildren().addAll(diceUi, categoryAndNext);
+		mainBoard.getChildren().addAll(diceUi, categoryAndNext, stopGame);
 	}
 
 	private void createDice() {
@@ -163,6 +168,10 @@ public class YahtzeeGamePanel extends BorderPane {
 	public void setCategoryChoiceHandler(EventHandler<ActionEvent> categoryChoiceHandler)
 	{
 		this.select.setOnAction(categoryChoiceHandler);
+	}
+	
+	public void setStopGameHandler(EventHandler<ActionEvent> stopGameHandler) {
+		this.stopGame.setOnAction(stopGameHandler);
 	}
 	
 	public boolean[] getRerollFlags()

@@ -64,6 +64,10 @@ public class Yahtzee extends Game
 	{
 		return this.currentDice.getValues();
 	}
+	
+	public void rotate() {
+		this.players.rotate();
+	}
 
 	public void ready(CategoryType type)
 	{
@@ -94,6 +98,11 @@ public class Yahtzee extends Game
 	{
 		return this.scoreCard.winner();
 	}
+	
+	public void tempWinner() {
+		JOptionPane.showMessageDialog(null, this.scoreCard.tempWinner(), "Temporary Winner", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 
 	public void registerController(String playerName, PlayerController playerCtrl)
 	{
@@ -136,6 +145,16 @@ public class Yahtzee extends Game
 		{
 			player.kill();
 		}
+	}
+	
+	public void killPlayer(Player player) {
+		removePlayer(player);
+		playerControllerMap.get(player).kill();
+	}
+	
+	public void removePlayer(Player player) {
+		//
+		this.players.removePlayer(player);
 	}
 
 	@Override

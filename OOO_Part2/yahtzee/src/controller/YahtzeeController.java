@@ -3,9 +3,12 @@ package controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.domain.Game;
+import model.domain.Player;
 import model.domain.Yahtzee;
 import view.ui.YahtzeeGameView;
 
@@ -24,6 +27,7 @@ public class YahtzeeController implements PlayerController
 		
 		this.window.setRollButtonHandler(new RollButtonHandler());
 		this.window.setCategoryChoiceHandler(new CategoryChoiceHandler());
+		this.window.setStopGameHandler(new StopGameHandler());
 
 		this.window.start();
 		
@@ -52,6 +56,22 @@ public class YahtzeeController implements PlayerController
 			window.deactivate();
 			game.playerReady();
 		}
+	}
+	
+	private class StopGameHandler implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent event) {
+			//deze moet dan weten wat de naam is van de player??
+			game.tempWinner();
+			Player player = game.getPlayerByName(window.getPlayerName());
+			if (player == game.activePlayer()) {
+				game.rotate();
+			}
+			game.killPlayer(player);
+			game.playerReady();
+		}
+		
 	}
 	
 	@Override

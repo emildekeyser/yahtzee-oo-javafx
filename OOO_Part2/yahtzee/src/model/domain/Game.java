@@ -16,6 +16,12 @@ public abstract class Game
 	{
 		return players.activePlayer();
 	}
+	
+	public Player getPlayerByName(String name) {
+		//
+		return players.getPlayerByName(name);
+	}
+	
 	public abstract String winner();
 	public abstract void start();
 }

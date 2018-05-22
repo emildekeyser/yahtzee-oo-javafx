@@ -89,6 +89,10 @@ public class YahtzeeGameView extends Stage{
 	{
 		this.getYathzeeGamePanel().setCategoryChoiceHandler(CategoryChoiceHandler);
 	}
+	
+	public void setStopGameHandler(EventHandler<ActionEvent> stopGameHandler) {
+		this.getYathzeeGamePanel().setStopGameHandler(stopGameHandler);
+	}
 
 	public boolean[] getRerollFlags()
 	{
@@ -130,6 +134,9 @@ public class YahtzeeGameView extends Stage{
 	{
 		this.yathzeeGamePanel.setBonuses(bonuses);
 	}
-
+	
+	public String getPlayerName() {
+		return this.yathzeeGamePanel.getPlayerName();
+	}
 
 }

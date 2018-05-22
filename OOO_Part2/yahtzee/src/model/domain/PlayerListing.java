@@ -34,6 +34,16 @@ public class PlayerListing implements Iterable<String>
 		}
 		return false;
 	}
+	
+	public Player getPlayerByName(String name) {
+		//
+		for(Player player: this.players) {
+			if (player.getName().equals(name)) {
+				return player;
+			}
+		}
+		return null;
+	}
 
 	@Override
 	public Iterator<String> iterator()
@@ -97,6 +107,10 @@ public class PlayerListing implements Iterable<String>
 			}
 		}
 		throw new DomainException("Tried to start the game with a non existent player!");
+	}
+	
+	public void removePlayer(Player player) {
+		this.players.remove(player);
 	}
 	
 }
