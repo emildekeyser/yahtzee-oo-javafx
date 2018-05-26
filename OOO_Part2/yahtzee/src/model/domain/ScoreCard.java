@@ -9,16 +9,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import model.domain.categories.CategoryParser;
+import model.domain.categories.CategoryFactory;
 
 public class ScoreCard
 {
 	private LinkedHashMap<Player, EnumMap<CategoryType, Integer>> data;
-	private CategoryParser parser;
+	private CategoryFactory factory;
 
 	public ScoreCard(PlayerListing players)
 	{
-		this.parser = new CategoryParser();
+		this.factory = new CategoryFactory();
 		this.data = new LinkedHashMap<>();
 		for (String playerName : players)
 		{
@@ -36,29 +36,17 @@ public class ScoreCard
 
 	public void save(Player player, CategoryType type, Dice dice)
 	{
-		if (this.parser.validCategories(dice).contains(type))
+
+		if (this.data.get(player).get(type).equals(0))
 		{
-			if (this.data.get(player).get(type).equals(0))
+			if (this.factory.createCategory(type).validDice(dice))
 			{
-				int score = this.parser.CalculateCategory(type, dice);
+				int score = this.factory.createCategory(type).calculate(dice);
 				this.data.get(player).put(type, score);
 			}
 			else
 			{
-				this.data.get(player).put(type, -2);
-				throw new DomainException("Cheating");
-			}
-		}
-		else
-		{
-			if (this.data.get(player).get(type).equals(0))
-			{
 				this.data.get(player).put(type, -1);
-			}
-			else
-			{
-				this.data.get(player).put(type, -2);
-				throw new DomainException("Cheating");
 			}
 		}
 	}
@@ -121,18 +109,7 @@ public class ScoreCard
 			}
 		}
 		
-		List<CategoryType> valid = this.parser.validCategories(dice); 
-		
-		ArrayList<CategoryType> allowed = new ArrayList<>();
-		for (CategoryType type : notFilledIn)
-		{
-			if (valid.contains(type))
-			{
-				allowed.add(type);
-			}
-		}
-		
-		return allowed.isEmpty() ? notFilledIn : allowed;
+		return notFilledIn;
 	}
 
 	public boolean allFilled()
