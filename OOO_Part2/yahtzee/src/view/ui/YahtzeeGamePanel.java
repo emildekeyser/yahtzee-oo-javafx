@@ -18,21 +18,16 @@ import javafx.scene.layout.HBox;
 import model.domain.BonusType;
 import model.domain.CategoryType;
 import model.domain.Player;
-import model.domain.ScoreData;
 
 public class YahtzeeGamePanel extends BorderPane {
 
 	private Label playerText;
 	private Label currentPlayerText;
-	private List<Integer> scores;
-	private List<Label> scoresLabelList;
 	private Button throwDice;
 	private Button stopGame;
 	private HBox diceUi;
 	private HBox categoryAndNext;
 	private GridPane mainBoard;
-	private GridPane scoreBoard;
-	private GridPane scoreBoardScores;
 	private ComboBox<CategoryType> categories;
 	private Button select;
 	private Label total;
@@ -87,11 +82,7 @@ public class YahtzeeGamePanel extends BorderPane {
 		categoryAndNext = new HBox();
 		categories = new ComboBox<CategoryType>();
 		select = new Button("Select");
-		scoreBoard = new GridPane();
 		mainBoard = new GridPane();
-		scores = new ArrayList<Integer>();
-		scoreBoardScores = new GridPane();
-		scoresLabelList = new ArrayList<Label>();
 		total = new Label("TOTAL: ");
 		diceValues = new ArrayList<Integer>();
 		stopGame = new Button("Stop playing");

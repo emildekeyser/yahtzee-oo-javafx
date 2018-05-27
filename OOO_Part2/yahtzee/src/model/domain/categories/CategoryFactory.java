@@ -1,11 +1,8 @@
 package model.domain.categories;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
 
 import model.domain.CategoryType;
-import model.domain.Dice;
 import model.domain.DomainException;
 
 public class CategoryFactory

@@ -1,7 +1,6 @@
 package view.ui;
 
 import java.util.ArrayList;
-import java.util.Observer;
 
 public interface View {
 	public void start();

@@ -1,9 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

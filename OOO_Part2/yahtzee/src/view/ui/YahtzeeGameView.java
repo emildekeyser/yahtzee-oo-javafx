@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import model.domain.BonusType;
 import model.domain.CategoryType;
 import model.domain.Player;
-import model.domain.ScoreData;
 
 public class YahtzeeGameView extends Stage{
 
