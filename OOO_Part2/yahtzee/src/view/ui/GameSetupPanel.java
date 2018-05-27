@@ -19,7 +19,7 @@ public class GameSetupPanel extends GridPane {
 	public GameSetupPanel() {
 		playerNameText = new Label("What is your name?");
 		nameUserInput = new TextField();
-		next = new Button("Next");
+		next = new Button("Add");
 		startGame = new Button("Start");
 		playerNameList = new Label();
 		

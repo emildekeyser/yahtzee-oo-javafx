@@ -22,7 +22,7 @@ public class YahtzeeGameView extends Stage{
 		setStage(stage);
 		setYathzeeGamePanel(pane);
 
-		Scene mainScene = new Scene(pane, 500, 350);
+		Scene mainScene = new Scene(pane, 500, 500);
 		getStage().setTitle("Yathzee");
 		getStage().setScene(mainScene);
 		sizeToScene();
